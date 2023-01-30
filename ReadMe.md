@@ -19,11 +19,10 @@ xpip install xontrib-rtx
 ## Usage
 
 
-This xontrib will get loaded automatically for interactive sessions.
-To stop this, set
+This xontrib will get loaded automatically for interactive sessions; to stop this, set
 
 ```xonsh
-$XONTRIBS_AUTOLOAD_DISABLED = {"ptk_shell", }
+$XONTRIBS_AUTOLOAD_DISABLED = {"rtx", }
 ```
 
 
