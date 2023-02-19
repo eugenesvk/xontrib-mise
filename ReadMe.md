@@ -48,7 +48,7 @@ if 'rtx' in xontribs: # Configure rtx only if you're actually loading
   envx['XONTRIB_RTX_FORCE_COLOR']    	= True              	# |True|False¦ preserve colored rtx output
   envx['XONTRIB_RTX_LOGLEVEL']       	= 1                 	# |1|0¦ print xontrib log messages: 0 none, 1 error; 'rtx' stderr is always passed through
 
-xontribs_load(xontribs_manual) # actually load all xontribs in the list
+xontribs_load(xontribs) # actually load all xontribs in the list
 ```
 
 2. Or just add this to your xonsh run control file
