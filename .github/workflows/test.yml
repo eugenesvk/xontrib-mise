@@ -37,5 +37,5 @@ jobs:
       run: poetry install
     - name: Run tests
       run: |
-        poetry run xonsh -c "xontrib load rtx"
+        poetry run xonsh -c "xontrib load mise"
         poetry run pytest
