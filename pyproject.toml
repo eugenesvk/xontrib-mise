@@ -1,11 +1,11 @@
 [tool.poetry]
-name        = "xontrib-rtx"
+name        = "xontrib-mise"
 version     = "0.0.1"
-description = "Initializes rtx (polyglot asdf-like runtime manager)"
+description = "Initializes mise (polyglot asdf-like runtime manager)"
 authors     = ["Evgeny <es.bugzilla@gmail.com>"]
 license     = "MIT"
 readme      = "ReadMe.md"
-repository  = "https://github.com/eugenesvk/xontrib-rtx"
+repository  = "https://github.com/eugenesvk/xontrib-mise"
 keywords    = ['xontrib', 'xonsh']
 
 classifiers = [
@@ -22,10 +22,10 @@ classifiers = [
 packages = [{include = "xontrib"}]
 
 [tool.poetry.urls]
-Homepage       	= "https://github.com/eugenesvk/xontrib-rtx"
-Documentation  	= "https://github.com/eugenesvk/xontrib-rtx/blob/master/README.md"
-Code           	= "https://github.com/eugenesvk/xontrib-rtx"
-"Issue tracker"	= "https://github.com/eugenesvk/xontrib-rtx/issues"
+Homepage       	= "https://github.com/eugenesvk/xontrib-mise"
+Documentation  	= "https://github.com/eugenesvk/xontrib-mise/blob/master/README.md"
+Code           	= "https://github.com/eugenesvk/xontrib-mise"
+"Issue tracker"	= "https://github.com/eugenesvk/xontrib-mise/issues"
 
 [tool.poetry.dependencies]
 python	= ">=3.8"

@@ -9,11 +9,11 @@ github_username: eugenesvk
 has_aliases: true
 has_events: true
 package_manager: poetry
-project_name: rtx
-project_package_name: rtx
-project_repo_name: xontrib-rtx
-project_short_description: Initializes rtx (polyglot asdf-like runtime manager)
+project_name: mise
+project_package_name: mise
+project_repo_name: xontrib-mise
+project_short_description: Initializes mise (polyglot asdf-like runtime manager)
 pure_py: true
-py_module_name: xontrib_rtx
+py_module_name: xontrib_mise
 version: 0.0.1
 
