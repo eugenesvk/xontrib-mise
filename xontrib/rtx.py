@@ -4,13 +4,12 @@ from pathlib        	import Path
 from xonsh.built_ins	import XSH
 
 __all__ = ()
-base     	= 'rtx'
-base_path	= Path(f'~/bin/{base}').expanduser()
+bases	= ['mise','rtx']
 
-envx             	= XSH.env
-get_cmd          	= XSH.commands_cache.locate_binary
-get_cmd_lazy     	= XSH.commands_cache.lazy_locate_binary
-isCmdCacheFresh  	= False
+envx           	= XSH.env
+get_cmd        	= XSH.commands_cache.locate_binary
+get_cmd_lazy   	= XSH.commands_cache.lazy_locate_binary
+isCmdCacheFresh	= False
 
 # Get user config
 _log             	= int(envx.get('XONTRIB_RTX_LOGLEVEL', 1)) # 0 none, 1 error, 2 warning, 3 extra
@@ -31,18 +30,16 @@ if _lis_cmd_pos:
       break
 
 bin	= None
-def get_bin(base=base): # get Path to binary if exists
+def get_bin(base=bases[0]): # get Path to binary if exists
   global isCmdCacheFresh
   bin   = get_cmd_lazy(base, ignore_alias=True) # find lazily
   if not bin and not isCmdCacheFresh:           # refresh cache if not found, try again
     isCmdCacheFresh = True
     bin = get_cmd(     base, ignore_alias=True)
+  base_path	= Path(f'~/bin/{base}').expanduser()
   if not bin and base_path.exists():          # try the default path
     bin = base_path
   if not bin:
-    PATH = envx.get("PATH")
-    if _log >= 1:
-      print_color(f"{{BLUE}}xontrib-rtx:{{RED}} error:{{RESET}} can't find '{{BLUE}}{base}{{RESET}}' in either\n  commands cache: {PATH} or\n  default path: {base_path}")
     return None
   else:
     _color = envx.get('XONTRIB_RTX_FORCE_COLOR', True)
@@ -86,14 +83,20 @@ def update_env():
 # Activate
 def _activate_rtx():
   global bin
-  if (bin := get_bin()):                            	# if rtx exists register events↓
-    events.on_post_init          (listen_init     ) 	# startup (initialization finished)
-    events.on_chdir              (listen_cd       ) 	# dir change
-    if _lis_cmd_trans:                              	#
-      events.on_transform_command(listen_transform) 	# on ⏎ (!chains with other transfroms!)
-    if _lis_cmd_pos:                                	#
-      events.on_postcommand      (listen_cmd_pos  ) 	# after a command is executed
-    #events.on_precommand         (listen_cmd      )	# before a command is executed
-    #events.on_pre_prompt         (listen_prompt   )	# before showing the prompt
+  for base in bases:
+    if (bin := get_bin(base=base)):                   	# if rtx exists register events↓
+      events.on_post_init          (listen_init     ) 	# startup (initialization finished)
+      events.on_chdir              (listen_cd       ) 	# dir change
+      if _lis_cmd_trans:                              	#
+        events.on_transform_command(listen_transform) 	# on ⏎ (!chains with other transfroms!)
+      if _lis_cmd_pos:                                	#
+        events.on_postcommand      (listen_cmd_pos  ) 	# after a command is executed
+      #events.on_precommand         (listen_cmd      )	# before a command is executed
+      #events.on_pre_prompt         (listen_prompt   )	# before showing the prompt
+      return
+  if _log >= 1:
+    PATH = envx.get("PATH")
+    base_paths	= [Path(f'~/bin/{b}').expanduser() for b in bases]
+    print_color(f"{{BLUE}}xontrib-rtx:{{RED}} error:{{RESET}} can't find {{BLUE}}{bases}{{RESET}} in either\n  • commands cache: {PATH} or\n  • default path: '{"', '".join([str(p) for p in base_paths])}'")
 
 _activate_rtx()
