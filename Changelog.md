@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file
 
-[unreleased]: https://github.com/eugenesvk/xontrib-rtx/compare/0.0.1...HEAD
+[unreleased]: https://github.com/eugenesvk/xontrib-mise/compare/0.0.1...HEAD
 ## [Unreleased]
   <!-- - __Added__ -->
     <!-- + :sparkles:  -->
@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file
   - __Added__
     + :sparkles: 
   - __Changed__
-    +  
+    + renamed `rtx` to `mise` (though continue to check for both binaries)
   - __Fixed__
     + :beetle: 
   - __Deprecated__
@@ -34,5 +34,5 @@ All notable changes to this project will be documented in this file
   - __Security__
     + :lock: 
 
-[0.0.1]: https://github.com/eugenesvk/xontrib-rtx/releases/tag/0.0.1
+[0.0.1]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.1
 ## [0.0.1]
