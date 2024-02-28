@@ -12,20 +12,20 @@ get_cmd_lazy   	= XSH.commands_cache.lazy_locate_binary
 isCmdCacheFresh	= False
 
 # Get user config
-_log             	= int(envx.get('XONTRIB_RTX_LOGLEVEL', 1)) # 0 none, 1 error, 2 warning, 3 extra
-_lis_cmd_trans   	= False if envx.get('XONTRIB_RTX_NEWLINE_REFRESH', True) == False else True
+_log             	= int(envx.get('XONTRIB_MISE_LOGLEVEL', envx.get('XONTRIB_RTX_LOGLEVEL',1))) # 0 none, 1 error, 2 warning, 3 extra
+_lis_cmd_trans   	= False if envx.get('XONTRIB_MISE_NEWLINE_REFRESH',envx.get('XONTRIB_RTX_NEWLINE_REFRESH', True)) == False else True
 cmd_pos_chunk_def	= ['.tool-versions']
-cmd_pos_chunk    	= envx.get('XONTRIB_RTX_CHUNK_LIST', cmd_pos_chunk_def)
+cmd_pos_chunk    	= envx.get('XONTRIB_MISE_CHUNK_LIST', envx.get('XONTRIB_RTX_CHUNK_LIST', cmd_pos_chunk_def))
 _lis_cmd_pos     	= False if cmd_pos_chunk == False else True
 if _lis_cmd_pos:
   if not (user_t := type(cmd_pos_chunk)) == list:
     if _log >= 1:
-      print_color(f"{{BLUE}}xontrib-rtx:{{RED}} error:{{RESET}} {{BLUE}}XONTRIB_RTX_CHUNK_LIST{{RESET}} config should be {{BLUE}}{list}{{RESET}}, not {{BLUE}}{user_t}{{RESET}}: {cmd_pos_chunk} ")
+      print_color(f"{{BLUE}}xontrib-mise:{{RED}} error:{{RESET}} {{BLUE}}XONTRIB_MISE_CHUNK_LIST{{RESET}} config should be {{BLUE}}{list}{{RESET}}, not {{BLUE}}{user_t}{{RESET}}: {cmd_pos_chunk} ")
     cmd_pos_chunk	= cmd_pos_chunk_def
   for i,chunk in enumerate(cmd_pos_chunk):
     if not (user_t := type(chunk)) == str:
       if _log >= 1:
-        print_color(f"{{BLUE}}xontrib-rtx:{{RED}} error:{{RESET}} {{BLUE}}XONTRIB_RTX_CHUNK_LIST{{RESET}} items should be {{BLUE}}{str}{{RESET}}, not {{BLUE}}{user_t}{{RESET}}: item#{i+1} = {chunk} ")
+        print_color(f"{{BLUE}}xontrib-mise:{{RED}} error:{{RESET}} {{BLUE}}XONTRIB_MISE_CHUNK_LIST{{RESET}} items should be {{BLUE}}{str}{{RESET}}, not {{BLUE}}{user_t}{{RESET}}: item#{i+1} = {chunk} ")
       cmd_pos_chunk	= cmd_pos_chunk_def
       break
 
@@ -42,7 +42,7 @@ def get_bin(base=bases[0]): # get Path to binary if exists
   if not bin:
     return None
   else:
-    _color = envx.get('XONTRIB_RTX_FORCE_COLOR', True)
+    _color = envx.get('XONTRIB_MISE_FORCE_COLOR', envx.get('XONTRIB_RTX_FORCE_COLOR', True))
     if _color:
       envx[   'FORCE_COLOR'] = True
       environ['FORCE_COLOR'] = envx.get_detyped('FORCE_COLOR')
@@ -71,20 +71,20 @@ def listen_cmd_pos(cmd:str, rtn:int, out:str or None, ts:list, **_):
 def update_env():
   ctx = XSH.ctx
 
-  rtx_hook_proc  = subprocess.run([bin,'hook-env','-s','xonsh'],capture_output=True)
-  rtx_hook       = rtx_hook_proc.stdout # ↑ set $__RTX_DIR, $__RTX_DIFF, $__RTX_WATCH
-  rtx_hook_err   = rtx_hook_proc.stderr
+  mise_hook_proc  = subprocess.run([bin,'hook-env','-s','xonsh'],capture_output=True)
+  mise_hook       = mise_hook_proc.stdout # ↑ set $__MISE_DIR, $__MISE_DIFF, $__MISE_WATCH
+  mise_hook_err   = mise_hook_proc.stderr
 
-  if rtx_hook_err:
-    print(rtx_hook_err.decode().rstrip(), file=sys.stderr)
-  if rtx_hook:
-    execx(rtx_hook.decode(), 'exec', ctx, filename='rtx')
+  if mise_hook_err:
+    print(mise_hook_err.decode().rstrip(), file=sys.stderr)
+  if mise_hook:
+    execx(mise_hook.decode(), 'exec', ctx, filename=Path(bin).name)
 
 # Activate
-def _activate_rtx():
+def _activate_mise():
   global bin
   for base in bases:
-    if (bin := get_bin(base=base)):                   	# if rtx exists register events↓
+    if (bin := get_bin(base=base)):	# if mise exists register events↓
       events.on_post_init          (listen_init     ) 	# startup (initialization finished)
       events.on_chdir              (listen_cd       ) 	# dir change
       if _lis_cmd_trans:                              	#
@@ -97,6 +97,6 @@ def _activate_rtx():
   if _log >= 1:
     PATH = envx.get("PATH")
     base_paths	= [Path(f'~/bin/{b}').expanduser() for b in bases]
-    print_color(f"{{BLUE}}xontrib-rtx:{{RED}} error:{{RESET}} can't find {{BLUE}}{bases}{{RESET}} in either\n  • commands cache: {PATH} or\n  • default path: '{"', '".join([str(p) for p in base_paths])}'")
+    print_color(f"{{BLUE}}xontrib-mise:{{RED}} error:{{RESET}} can't find {{BLUE}}{bases}{{RESET}} in either\n  • commands cache: {PATH} or\n  • default path: '{"', '".join([str(p) for p in base_paths])}'")
 
-_activate_rtx()
+_activate_mise()
