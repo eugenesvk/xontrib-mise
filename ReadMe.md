@@ -60,7 +60,7 @@ $XONTRIB_MISE_LOGLEVEL = 1
 
 ## Known issues
 
-- In the future xontrib-mise will be autoloaded, but this is currently blocked due to a [xonsh bug](https://github.com/xonsh/xonsh/issues/5020): too early autoload prevens reading user config; also, autoloading can't be disabled
+- In the future xontrib-mise will be autoloaded, but this is currently blocked due to a [xonsh bug](https://github.com/xonsh/xonsh/issues/5020): too early autoload prevents reading user config; also, autoloading can't be disabled
 
 ## Credits
 
