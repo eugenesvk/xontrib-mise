@@ -22,6 +22,9 @@ All notable changes to this project will be documented in this file
     <!-- + :lock:  -->
     <!-- vulnerabilities -->
 
+  - __Changed__
+    + renamed `rtx.py` to `mise.py` to avoid confusion in loading
+
 [0.0.2]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.2
 ## [0.0.2]
   - __Changed__
