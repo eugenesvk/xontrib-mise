@@ -22,6 +22,9 @@ All notable changes to this project will be documented in this file
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
 
+  - __Changed__
+    + drop trying to find a binary in a nonexistent cache, which is now very costly, especially with larger `$PATH`s
+
 [0.0.3]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.3
 ## [0.0.3]
   - __Changed__
