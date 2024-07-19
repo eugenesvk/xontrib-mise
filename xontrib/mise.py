@@ -7,10 +7,9 @@ from xonsh.procs    	import executables
 __all__ = ()
 bases	= ['mise','rtx']
 
-envx           	= XSH.env
-get_cmd        	= executables.locate_executable
-get_cmd_lazy   	= XSH.commands_cache.lazy_locate_binary
-isCmdCacheFresh	= False
+envx        	= XSH.env
+get_cmd     	= executables.locate_executable
+get_cmd_lazy	= XSH.commands_cache.lazy_locate_binary
 
 # Get user config
 _log             	= int(envx.get('XONTRIB_MISE_LOGLEVEL', envx.get('XONTRIB_RTX_LOGLEVEL',1))) # 0 none, 1 error, 2 warning, 3 extra
@@ -32,10 +31,8 @@ if _lis_cmd_pos:
 
 bin	= None
 def get_bin(base=bases[0]): # get Path to binary if exists
-  global isCmdCacheFresh
-  bin   = get_cmd_lazy(base, ignore_alias=True) # find lazily
-  if not bin and not isCmdCacheFresh:           # refresh cache if not found, try again
-    isCmdCacheFresh = True
+  bin   = get_cmd_lazy(base, ignore_alias=True) # find lazily (but in v18 cache ~unused)
+  if not bin:                                   # use v18 API (doesn't refresh cache)
     bin = get_cmd(     base, ignore_alias=True)
   base_path	= Path(f'~/bin/{base}').expanduser()
   if not bin and base_path.exists():          # try the default path
