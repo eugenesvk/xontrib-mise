@@ -2,12 +2,13 @@ import sys, subprocess
 from os             	import environ
 from pathlib        	import Path
 from xonsh.built_ins	import XSH
+from xonsh.procs    	import executables
 
 __all__ = ()
 bases	= ['mise','rtx']
 
 envx           	= XSH.env
-get_cmd        	= XSH.commands_cache.locate_binary
+get_cmd        	= executables.locate_executable
 get_cmd_lazy   	= XSH.commands_cache.lazy_locate_binary
 isCmdCacheFresh	= False
 
