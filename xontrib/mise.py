@@ -33,7 +33,7 @@ bin	= None
 def get_bin(base=bases[0]): # get Path to binary if exists
   bin   = get_cmd_lazy(base, ignore_alias=True) # find lazily (but in v18 cache ~unused)
   if not bin:                                   # use v18 API (doesn't refresh cache)
-    bin = get_cmd(     base, ignore_alias=True)
+    bin = get_cmd(     base)
   base_path	= Path(f'~/bin/{base}').expanduser()
   if not bin and base_path.exists():          # try the default path
     bin = base_path
