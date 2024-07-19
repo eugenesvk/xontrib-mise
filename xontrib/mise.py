@@ -82,7 +82,7 @@ def update_env():
 def _activate_mise():
   global bin
   for base in bases:
-    if (bin := get_bin(base=base)):	# if mise exists register events↓
+    if (bin := get_bin(base=base)):                   	# if mise exists register events↓
       events.on_post_init          (listen_init     ) 	# startup (initialization finished)
       events.on_chdir              (listen_cd       ) 	# dir change
       if _lis_cmd_trans:                              	#
@@ -94,7 +94,10 @@ def _activate_mise():
       return
   if _log >= 1:
     PATH = envx.get("PATH")
-    base_paths	= [Path(f'~/bin/{b}').expanduser() for b in bases]
-    print_color(f"{{BLUE}}xontrib-mise:{{RED}} error:{{RESET}} can't find {{BLUE}}{bases}{{RESET}} in either\n  • commands cache: {PATH} or\n  • default path: '{"', '".join([str(p) for p in base_paths])}'")
+    base_paths 	= [Path(f'~/bin/{b}').expanduser() for b in bases]
+    base_path_s	= "', '".join([str(p) for p in base_paths])
+    print_color(f"{{BLUE}}xontrib-mise:{{RED}} error:{{RESET}} can't find {{BLUE}}{bases}{{RESET}} in either" +"\n"+\
+      f"  • commands cache: {PATH} or" +"\n"+\
+      f"  • default path: '{base_path_s}'")
 
 _activate_mise()
