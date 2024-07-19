@@ -1,6 +1,6 @@
 [tool.poetry]
 name        = "xontrib-mise"
-version     = "0.0.1"
+version     = "0.0.3"
 description = "Initializes mise (polyglot asdf-like runtime manager)"
 authors     = ["Evgeny <es.bugzilla@gmail.com>"]
 license     = "MIT"

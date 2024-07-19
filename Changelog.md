@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file
 
-[unreleased]: https://github.com/eugenesvk/xontrib-mise/compare/0.0.2...HEAD
+[unreleased]: https://github.com/eugenesvk/xontrib-mise/compare/0.0.3...HEAD
 ## [Unreleased]
 <!-- - __Added__ -->
   <!-- + :sparkles:  -->
@@ -22,6 +22,8 @@ All notable changes to this project will be documented in this file
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
 
+[0.0.3]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.3
+## [0.0.3]
   - __Changed__
     + renamed `rtx.py` to `mise.py` to avoid confusion in loading
 
