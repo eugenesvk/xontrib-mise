@@ -28,7 +28,7 @@ Code           	= "https://github.com/eugenesvk/xontrib-mise"
 "Issue tracker"	= "https://github.com/eugenesvk/xontrib-mise/issues"
 
 [tool.poetry.dependencies]
-python	= ">=3.8"
+python	= ">=3.9,<4.0"
 xonsh 	= ">=0.13.4"
 
 [tool.poetry.dev-dependencies]
