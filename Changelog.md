@@ -22,6 +22,11 @@ All notable changes to this project will be documented in this file
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
 
+  - __Fixed__
+    + remove invalid arg
+  - __Changed__
+    + remove unused cache refresh tracking
+
 [0.0.4]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.4
 ## [0.0.4]
   - __Changed__
