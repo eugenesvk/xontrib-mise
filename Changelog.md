@@ -22,6 +22,9 @@ All notable changes to this project will be documented in this file
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
 
+  - __Fixed__
+    + old environment passed to subprocess (xonsh doesn't always update the `os.environ` even with `$UPDATE_OS_ENVIRON`) #1
+
 [0.0.5]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.5
 ## [0.0.5]
   - __Fixed__
