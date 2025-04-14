@@ -31,7 +31,7 @@ Code           	= "https://github.com/eugenesvk/xontrib-mise"
 python	= ">=3.9,<4.0"
 xonsh 	= ">=0.18.2"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest	= ">=8.2"
 
 [build-system]
