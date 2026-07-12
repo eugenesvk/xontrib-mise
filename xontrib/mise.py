@@ -69,7 +69,7 @@ def listen_cmd_pos(cmd:str, rtn:int, out:str or None, ts:list, **_):
 def update_env():
   ctx = XSH.ctx
 
-  mise_hook_proc  = subprocess.run([bin,'hook-env','-s','xonsh'],capture_output=True, env=xonsh.environ.XSH.env.detype_all())
+  mise_hook_proc  = subprocess.run([bin,'hook-env','-s','xonsh'],capture_output=True, env=XSH.env.detype_all())
   mise_hook       = mise_hook_proc.stdout # ↑ set $__MISE_DIR, $__MISE_DIFF, $__MISE_WATCH
   mise_hook_err   = mise_hook_proc.stderr
 
