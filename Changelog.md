@@ -21,6 +21,8 @@ All notable changes to this project will be documented in this file
 <!-- - __Security__ -->
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
+  - __Fixed__
+    + wrong syntax for loading environment
 
 [0.0.6]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.6
 ## [0.0.6]
