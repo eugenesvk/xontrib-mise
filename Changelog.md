@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file
 
-[unreleased]: https://github.com/eugenesvk/xontrib-mise/compare/0.0.6...HEAD
+[unreleased]: https://github.com/eugenesvk/xontrib-mise/compare/0.0.7...HEAD
 ## [Unreleased]
 <!-- - __Added__ -->
   <!-- + :sparkles:  -->
@@ -21,6 +21,9 @@ All notable changes to this project will be documented in this file
 <!-- - __Security__ -->
   <!-- + :lock:  -->
   <!-- vulnerabilities -->
+
+[0.0.7]: https://github.com/eugenesvk/xontrib-mise/releases/tag/0.0.7
+## [0.0.7]
   - __Fixed__
     + wrong syntax for loading environment
 
